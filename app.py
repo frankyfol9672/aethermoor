@@ -134,15 +134,18 @@ BOSSES = [
     {"name": "The Hollow King", "hp": 60, "attack": 9, "defense": 3, "xp": 60, "special": "shield_block",
      "phase2_trigger": 30, "phase2_attack_bonus": 4,
      "intent_pool": ["crashes down with a rusted greatsword", "summons grave-cold", "shield-charges across the floor", "raises hollow soldiers"],
-     "description": "He used to be a king. Now he is mostly a vessel."},
+     "description": "He used to be a king. Now he is mostly a vessel.",
+     "intro_text": "The throne room at the end of the dungeon holds something that might once have been royal. The armour is ornate, ceremonial, built for a body that no longer has opinions about its contents. The Hollow King turns to face you. The eyes behind the visor are two points of cold light. It raises its sword not in greeting but in recognition — the way a lock recognises a key. <br><br><i>It has been waiting. Not patiently. Just waiting.</i>"},
     {"name": "Mother of Spores", "hp": 70, "attack": 7, "defense": 2, "xp": 65, "special": "spore_cloud",
      "phase2_trigger": 35, "phase2_attack_bonus": 3,
      "intent_pool": ["releases a vast spore cloud", "lashes with mycelial whips", "births a stalker-spawn", "gurgles a fungal hymn"],
-     "description": "The dungeon is her body. The dungeon is hungry."},
+     "description": "The dungeon is her body. The dungeon is hungry.",
+     "intro_text": "The cavern ends in a chamber so large the ceiling is just darkness. And in the centre of the darkness, something massive breathes. You have been walking through her body this entire time. The fungal creepers, the spores, the soft floor — all of it was her. She opens what might be eyes. They are not arranged in a way that suggests individual thought. <br><br><i>The dungeon is hungry. The dungeon has found you.</i>"},
     {"name": "Ashen Lich", "hp": 55, "attack": 10, "defense": 1, "xp": 70, "special": "ash_armor",
      "phase2_trigger": 27, "phase2_attack_bonus": 5,
      "intent_pool": ["hurls a bolt of ash and fire", "draws sigils in burning air", "raises a wall of cinders", "whispers your true name"],
-     "description": "A scholar who refused to die. Now neither living nor scholarly."},
+     "description": "A scholar who refused to die. Now neither living nor scholarly.",
+     "intro_text": "There is a figure in the ash sitting in what was a chair, at what was a desk, studying what was a book. It looks up when you enter. The face is ancient, desiccated, and completely calm — the calm of someone who has solved the problem of mortality and is mildly annoyed that it keeps sending visitors. <br><br>*'You are not the first,'* it says. The ash around it begins to swirl. *'But you may be the last.'*"},
 ]
 
 RELICS = [
@@ -374,6 +377,164 @@ SHOP_CATALOG = [
 ]
 
 # =====================================================================
+# NARRATIVE — all story/transition/approach text
+# =====================================================================
+
+# Opening monologue per class — shown on the very first node
+CLASS_OPENINGS = {
+    "iron_warden": (
+        "You have done this before. Different dungeon, same smell — damp stone, old blood, "
+        "the faint metallic tang of something that hasn't been aired out since before you were born. "
+        "You check your sword. You check your shield. You go in anyway. "
+        "**Some people call it bravery. You call it a lack of better options.**"
+    ),
+    "shadowblade": (
+        "The job was supposed to be simple: retrieve something from inside and bring it out. "
+        "The client didn't mention the seal, or the things that broke it, or the way the entrance "
+        "breathes like a sleeping animal. You note the exits. You note the shadows. "
+        "**You are already calculating how much of this you can cut corners on.**"
+    ),
+    "arcane_scholar": (
+        "Your notes from the university describe Aethermoor as a 'transitional locus of residual thaumic energy.' "
+        "Your notes from the university were written by people who had never been inside. "
+        "You can feel the magic already — old magic, the kind that doesn't care about your credentials. "
+        "**You open your notebook. Then you close it. Some things you just have to walk into.**"
+    ),
+    "dawnkeeper": (
+        "The Dawn Temple sent you here with a blessing and a vague mandate: 'cleanse what can be cleansed, "
+        "contain what cannot.' Standard language. You've learned that 'what cannot' tends to be most of it. "
+        "Your mace is warm in your hand. The light at the entrance flickers. "
+        "**You make the sign of the Dawn. The dungeon, notably, does not respond in kind.**"
+    ),
+}
+
+# Act transition text — shown once when moving into each act
+ACT_TRANSITIONS = {
+    1: None,  # Act 1 uses the class opening instead
+    2: {
+        "ruined_keep":   "The upper halls fall behind you. Deeper in, the architecture changes — older, stranger, built for things that didn't need doors at the same heights you do.",
+        "fungal_caverns":"The stone gives way to something softer. The walls breathe here, faintly, in and out with a rhythm that doesn't match any wind you can account for.",
+        "cursed_chapel": "The iconography shifts. Saints' faces have been chiselled away and replaced with other faces. You don't recognize them. You suspect that's intentional.",
+        "ash_wastes":    "The air tastes of old fires. Whatever burned here burned completely — walls, floor, the very idea of this place — and what's left is the skeleton of something that used to be enormous.",
+        "goblin_tunnels":"The passages narrow. Someone has scratched tallies into the walls. You count them. You stop counting them. There are too many to count.",
+    },
+    3: "Something changes. The dungeon knows you've come this far. The air pressure shifts. The sounds stop. It's waiting.",
+}
+
+# Biome approach lines — shown at the start of each node as a brief 'you arrive' sentence
+BIOME_APPROACH = {
+    "ruined_keep": [
+        "Flagstones give way underfoot. Something scurries behind a collapsed archway.",
+        "A draft carries the smell of iron and old leather through the passage.",
+        "The ceiling here is intact, which is the best thing you can say about it.",
+        "You move through a hall where the tapestries have rotted to silhouettes.",
+        "Moonlight — impossible at this depth — pools in a crack in the ceiling.",
+        "The corridor opens into something that was once a barracks. Once.",
+    ],
+    "fungal_caverns": [
+        "Bioluminescent caps dot the walls in clusters. They pulse when you pass.",
+        "Your boots sink slightly with each step. The floor is not stone here.",
+        "The air is thick enough to taste. You taste it anyway. You regret this.",
+        "Mycelium threads hang like curtains between the stalagmites.",
+        "Something in the dark releases a faint, sweet spore. You hold your breath.",
+        "The cavern opens into a chamber that glows a faint, sick green.",
+    ],
+    "cursed_chapel": [
+        "A row of pews faces an altar that faces the wrong direction.",
+        "Candles burn here, which would be comforting if they cast any shadows.",
+        "The floor is inscribed with a prayer in a language you don't recognize.",
+        "Glass from shattered windows crunches underfoot. The frames hold only dark.",
+        "A confessional booth stands in the corner, door slightly ajar.",
+        "The hymn you can almost hear is not one you know from the hymnal.",
+    ],
+    "ash_wastes": [
+        "The heat hasn't entirely left. It radiates from the walls like a grudge.",
+        "Ash drifts in from somewhere. There is no wind. There is no reason for the ash.",
+        "The ruins here suggest something large once stood. It was not made to fall.",
+        "Your footprints in the cinders are the first in a very long time.",
+        "Scorched stone and the outlines of things that melted. You move quickly.",
+        "The sky, where visible through the ceiling holes, is the wrong shade of red.",
+    ],
+    "goblin_tunnels": [
+        "The tunnels branch and re-branch. Someone mapped this once. They are gone.",
+        "Crude totems of bone and wire hang from the ceiling at head height.",
+        "The smell of cooked meat from somewhere. You hope it's meat.",
+        "Claw marks along the left wall. Someone left in a hurry. Going right.",
+        "A tripwire at ankle height. You step over it. You wonder how many others didn't.",
+        "The passage widens into a crude common room. No one is home. Probably.",
+    ],
+}
+
+# Node-type preamble — what you see/hear as you arrive at each type of encounter
+NODE_PREAMBLE = {
+    "combat": {
+        "ruined_keep":   ["Something moves in the far corner. Then it stops trying to be subtle.",
+                          "The sound of metal. Then the sound of something wanting blood."],
+        "fungal_caverns":["A shape detaches from the wall — you thought it was part of the cave.",
+                          "The spores shift and something steps through them toward you."],
+        "cursed_chapel": ["A figure at the altar turns. It was not praying.",
+                          "Movement behind the pews. It resolves itself into something hostile."],
+        "ash_wastes":    ["A silhouette in the haze takes on weight and purpose.",
+                          "You hear it before you see it. Then you see it."],
+        "goblin_tunnels":["High-pitched screaming from ahead. The enthusiastic kind.",
+                          "They were waiting. Not patiently, but effectively."],
+    },
+    "elite_combat": {
+        "ruined_keep":   "Something bigger than the others. The others were not small.",
+        "fungal_caverns":"The largest thing in the cavern has noticed you first.",
+        "cursed_chapel": "An elite among the damned. The corruption here runs deeper.",
+        "ash_wastes":    "This one has survived everything the wastes could throw at it. Now it's throwing you.",
+        "goblin_tunnels":"A champion, by goblin standards. Those standards involve a lot of corpses.",
+    },
+    "boss": {
+        "default": "The chamber at the end. The thing at the centre. You knew it was here. Here it is.",
+    },
+    "event": {
+        "ruined_keep":   "You pause. Something in the room is worth your attention — or wants it.",
+        "fungal_caverns":"The cavern offers you something. Most things the cavern offers are tricks. Not all.",
+        "cursed_chapel": "The chapel presses something on you. A choice, dressed up as chance.",
+        "ash_wastes":    "A moment's pause in the grey. An opportunity or a trap. Possibly both.",
+        "goblin_tunnels":"Something the goblins left behind, or left as bait, or didn't think was bait.",
+    },
+    "rest": {
+        "default": "A moment's breath. The dungeon continues on either side, but here, briefly, nothing is trying to kill you.",
+    },
+    "merchant": {
+        "default": "Someone is selling things down here. You've stopped asking why.",
+    },
+    "treasure": {
+        "default": "Something valuable, unattended. Which means either luck or a trap. Possibly you've earned some luck.",
+    },
+    "secret": {
+        "default": "A passage no one else found. Or no one else survived to use.",
+    },
+    "fork": {
+        "default": "The path splits. Both ways look wrong in different directions. You choose.",
+    },
+}
+
+# Post-result connector text — shown on the "Continue →" beat after a combat/event resolves
+# Pulled by the next node's type to bridge the gap
+POST_COMBAT_WIN = [
+    "The body settles. You catch your breath. The dungeon continues, indifferent.",
+    "You wipe your blade. The silence after a fight is its own kind of noise.",
+    "Done. For now. Further in, something didn't hear this and isn't slowing down.",
+    "Victory, technically. You move before the adrenaline has time to reconsider.",
+    "The enemy is down. The dungeon is not impressed. Neither are you, really. Onward.",
+]
+POST_COMBAT_FLEE = [
+    "You put distance between yourself and the problem. The problem remembers.",
+    "Running feels cowardly. Dying would have felt worse. You keep running.",
+    "The corridor swallows you. The sound of pursuit fades, then stops. Probably stops.",
+    "Not a win. Not a loss. A postponement. The dungeon doesn't forget.",
+]
+POST_EVENT = [
+    "The room releases you. You step forward into whatever comes next.",
+    "Choice made. Consequence pending. The dungeon doesn't bill immediately.",
+    "You file it away — what you did here, what it cost — and keep moving.",
+]
+
+# =====================================================================
 # STATE
 # =====================================================================
 
@@ -407,6 +568,11 @@ def init_state():
         "fork_choices": None,
         "pending_loot": None,
         "act": 1,
+        "prev_act": 1,
+        "show_act_transition": False,
+        "show_class_opening": True,
+        "node_intro_dismissed": False,
+        "post_result_text": None,
         "event_resolved": False,
         "rest_used": False,
         "rest_searched": False,
@@ -421,6 +587,51 @@ def add_log(gs, msg):
     gs["log"].insert(0, msg)
     if len(gs["log"]) > 8:
         gs["log"] = gs["log"][:8]
+
+def get_node_approach(gs, node):
+    """Return a 1–2 sentence atmospheric approach line for the current node."""
+    ntype = node.get("type", "combat")
+    biome = node.get("biome") or "ruined_keep"
+    rng = gs["rng"]
+    if ntype in ("combat", "elite_combat"):
+        key = "elite_combat" if ntype == "elite_combat" else "combat"
+        pool = NODE_PREAMBLE.get(key, {})
+        lines = pool.get(biome, pool.get("ruined_keep", ["Something waits ahead."]))
+        if isinstance(lines, list):
+            # use node index as stable offset so it doesn't re-roll on rerun
+            idx = gs["current_node_idx"] % len(lines)
+            return lines[idx]
+        return lines
+    elif ntype == "boss":
+        return NODE_PREAMBLE["boss"]["default"]
+    elif ntype in ("event", "merchant", "rest", "treasure", "secret", "fork"):
+        pool = NODE_PREAMBLE.get(ntype, {})
+        if isinstance(pool, dict):
+            line = pool.get(biome, pool.get("default", ""))
+            if not line:
+                line = pool.get("default", "")
+            return line
+        return pool
+    return ""
+
+def get_biome_flavour(gs, biome_key):
+    """Return a rotating atmospheric one-liner for the current biome."""
+    pool = BIOME_APPROACH.get(biome_key, ["The dungeon stretches on."])
+    idx = gs["current_node_idx"] % len(pool)
+    return pool[idx]
+
+def get_post_result_text(gs, result_type):
+    """Return a connector sentence for the Continue beat."""
+    rng = gs["rng"]
+    if result_type == "combat_win":
+        idx = gs["current_node_idx"] % len(POST_COMBAT_WIN)
+        return POST_COMBAT_WIN[idx]
+    elif result_type == "combat_flee":
+        idx = gs["current_node_idx"] % len(POST_COMBAT_FLEE)
+        return POST_COMBAT_FLEE[idx]
+    else:
+        idx = gs["current_node_idx"] % len(POST_EVENT)
+        return POST_EVENT[idx]
 
 def get_weapon(name):
     for w in WEAPONS:
@@ -1217,6 +1428,8 @@ def advance_node(gs):
     gs["rest_used"] = False
     gs["rest_searched"] = False
     gs["secret_taken"] = False
+    gs["node_intro_dismissed"] = False
+    gs["post_result_text"] = None
     if gs["current_node_idx"] >= len(gs["run_nodes"]):
         gs["screen"] = "ending"
         if not gs.get("ending_key"):
@@ -1224,7 +1437,12 @@ def advance_node(gs):
         return
     gs["current_node"] = gs["run_nodes"][gs["current_node_idx"]]
     gs["combat_state"] = None
-    gs["act"] = gs["current_node"].get("act", gs["act"])
+    prev_act = gs["act"]
+    new_act = gs["current_node"].get("act", gs["act"])
+    if new_act != prev_act:
+        gs["prev_act"] = prev_act
+        gs["show_act_transition"] = True
+    gs["act"] = new_act
     if gs["current_node"]["type"] == "ending":
         gs["screen"] = "ending"
         gs["ending_key"] = determine_ending(gs)
@@ -1434,13 +1652,26 @@ def render_combat(gs):
         return
     enemy = cs["enemy"]
     p = gs["player"]
+    node = gs.get("current_node", {})
 
     is_boss = enemy.get("is_boss", False)
+
+    # Boss: show cinematic intro text on first turn only
     if is_boss:
-        st.markdown(f"<div class='boss-title'>👑 BOSS: {enemy['name']}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='boss-title'>👑 {enemy['name']}</div>", unsafe_allow_html=True)
+        intro = enemy.get("intro_text") or enemy.get("description", "")
+        if intro and cs.get("turn", 1) == 1 and cs["result"] is None:
+            st.markdown(
+                f"<div class='event-box' style='border-color:#ef4444; color:#c9d1d9; margin-bottom:12px;'>"
+                f"{intro}</div>",
+                unsafe_allow_html=True
+            )
+    elif node.get("is_elite"):
+        st.markdown(f"### ⚠️ {enemy['name']} *(Elite)*")
+        st.caption(enemy.get("description", ""))
     else:
         st.markdown(f"### 👹 {enemy['name']}")
-    st.caption(enemy.get("description", ""))
+        st.caption(enemy.get("description", ""))
 
     enemy_ratio = max(0.0, cs["enemy_hp"] / max(1, cs["enemy_max_hp"]))
     st.markdown(f"**Enemy HP:** {max(0, cs['enemy_hp'])} / {cs['enemy_max_hp']}")
@@ -1493,11 +1724,23 @@ def render_combat(gs):
             st.success(f"✅ Victory! Defeated {enemy['name']}.")
             if cs.get("weapon_drop"):
                 st.info(f"⚔️ A {cs['weapon_drop']} was dropped — check the banner to equip.")
+            connector = get_post_result_text(gs, "combat_win")
+            st.markdown(
+                f"<div style='color:#8b949e; font-style:italic; font-size:0.9em; "
+                f"margin-top:10px;'>{connector}</div>",
+                unsafe_allow_html=True
+            )
             if st.button("Continue →", type="primary"):
                 advance_node(gs)
                 st.rerun()
         elif cs["result"] == "flee":
-            st.warning("💨 You escaped. The dungeon notices.")
+            st.warning("💨 You escaped.")
+            connector = get_post_result_text(gs, "combat_flee")
+            st.markdown(
+                f"<div style='color:#8b949e; font-style:italic; font-size:0.9em; "
+                f"margin-top:10px;'>{connector}</div>",
+                unsafe_allow_html=True
+            )
             if st.button("Continue →"):
                 advance_node(gs)
                 st.rerun()
@@ -1526,24 +1769,56 @@ def render_event(gs):
     if not gs.get("event_resolved"):
         for i, ch in enumerate(ev["choices"]):
             if st.button(f"➤ {ch['text']}", key=f"ev_ch_{i}", use_container_width=True):
+                gs["node_intro_dismissed"] = True
                 resolve_event_choice(gs, node["event_key"], i)
                 st.rerun()
     else:
         if gs.get("shop_items"):
             render_shop(gs)
         else:
+            connector = get_post_result_text(gs, "event")
+            st.markdown(
+                f"<div style='color:#8b949e; font-style:italic; font-size:0.9em; "
+                f"margin-top:10px;'>{connector}</div>",
+                unsafe_allow_html=True
+            )
             if st.button("Continue →", type="primary"):
                 advance_node(gs)
                 st.rerun()
 
 def render_rest(gs):
     p = gs["player"]
-    st.markdown("### 🔥 A Quiet Camp")
-    st.markdown(
-        "<div class='event-box'>You find a defensible alcove. A small fire crackles where someone "
-        "else, long ago, had the same idea. Their bones make decent kindling.</div>",
-        unsafe_allow_html=True
-    )
+    node = gs.get("current_node", {})
+    biome_key = node.get("biome", "ruined_keep")
+
+    # Biome-specific rest camp flavour
+    rest_texts = {
+        "ruined_keep":   ("A Quiet Camp",
+                          "You find a defensible alcove. A small fire crackles where someone else, "
+                          "long ago, had the same idea. Their bones make decent kindling. "
+                          "The dungeon presses in on all sides, but here — briefly, provisionally — nothing is trying to kill you."),
+        "fungal_caverns":("A Dry Ledge",
+                          "A shelf of stone above the mycelium, dry enough to sit on without your legs going numb. "
+                          "The bioluminescent caps pulse in slow rhythm. In another context this would be peaceful. "
+                          "In this context you eat standing up and keep one eye on the dark."),
+        "cursed_chapel": ("A Forgotten Vestry",
+                          "A side room off the main chapel, locked from the inside by someone who understood "
+                          "the value of a door. They are gone but the lock held. You bar it again. "
+                          "The singing, faint and atonal, continues through the wall. You choose to ignore it."),
+        "ash_wastes":    ("A Scorched Overhang",
+                          "Thin shelter under a fallen arch. The heat here is old — ambient, bone-deep, the kind "
+                          "that doesn't go away but stops getting worse. You rest. The wastes drift past the opening "
+                          "in grey curtains. Something out there makes no sound whatsoever."),
+        "goblin_tunnels":("An Abandoned Bolt-hole",
+                          "A side tunnel too narrow for anything large. Someone small left a cold fire pit and "
+                          "a broken knife. You don't fit comfortably but you fit. The sounds of the tunnels "
+                          "continue — distant, arguing, occasionally wet. None of it gets closer."),
+    }
+    title, text = rest_texts.get(biome_key, rest_texts["ruined_keep"])
+
+    st.markdown(f"### 🔥 {title}")
+    st.markdown(f"<div class='event-box'>{text}</div>", unsafe_allow_html=True)
+
     c1, c2, c3 = st.columns(3)
     with c1:
         if st.button("💤 Rest (heal 10 HP)", use_container_width=True, disabled=gs.get("rest_used", False)):
@@ -1562,27 +1837,56 @@ def render_rest(gs):
             gs["rest_searched"] = True
             st.rerun()
     with c3:
-        if st.button("➤ Continue", use_container_width=True, type="primary"):
+        if st.button("➤ Move on", use_container_width=True, type="primary"):
             advance_node(gs)
             st.rerun()
 
 def render_fork(gs):
     node = gs["current_node"]
+    # Narrative fork intro — ties what came before to the choice ahead
+    prev_nodes_done = gs["current_node_idx"]
+    if prev_nodes_done <= 3:
+        fork_preamble = (
+            "The upper halls are behind you. The fighting and the finding and whatever else "
+            "passed for the first stretch of this descent. Now the dungeon offers you a choice, "
+            "which is unusual. Dungeons don't typically negotiate. Pay attention to what that means."
+        )
+    else:
+        fork_preamble = (
+            "You've come far enough that the dungeon has begun to feel specific. Less like a building, "
+            "more like an argument someone never finished. Two passages. Two different directions "
+            "that argument is willing to take. You get one. The other becomes hypothetical."
+        )
     st.markdown("### 🛤️ The Path Splits")
     st.markdown(
-        "<div class='event-box'>Two tunnels stretch ahead. Each carries different air. "
-        "Each carries different sounds. Once chosen, the other closes behind you.</div>",
+        f"<div class='event-box'>{fork_preamble}</div>",
         unsafe_allow_html=True
     )
+    st.markdown("---")
     options = node.get("fork_options", [])
     cols = st.columns(len(options))
     for i, biome_key in enumerate(options):
         b = BIOMES.get(biome_key, {})
+        # Per-biome fork flavour
+        fork_flavours = {
+            "fungal_caverns": "The air here smells of earth and something sweet that you haven't decided is good yet.",
+            "cursed_chapel": "Faint singing. You cannot identify the song. You are not sure it wants to be identified.",
+            "ash_wastes": "Heat. The remnants of something immense. Whatever it was, it lost.",
+            "goblin_tunnels": "High voices, distant. Something being argued about with great enthusiasm.",
+            "ruined_keep": "The smell of iron and old stone. Familiar. Comfortable. You distrust this.",
+        }
+        flavour = fork_flavours.get(biome_key, "")
         with cols[i]:
-            st.markdown(f"<div class='stat-card'><h3>{b.get('emoji','?')} {b.get('name','???')}</h3><i>{b.get('description','')}</i></div>", unsafe_allow_html=True)
-            if st.button(f"Take this path", key=f"fork_{i}", use_container_width=True):
+            st.markdown(
+                f"<div class='stat-card' style='min-height:120px;'>"
+                f"<h3>{b.get('emoji','?')} {b.get('name','???')}</h3>"
+                f"<div style='color:#8b949e; font-style:italic; font-size:0.9em;'>{flavour}</div>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+            if st.button(f"➤ Take this path", key=f"fork_{i}", use_container_width=True):
                 expand_act2(gs, biome_key)
-                add_log(gs, f"➤ Chose: {b.get('name','???')}")
+                add_log(gs, f"➤ Descended into: {b.get('name','???')}")
                 advance_node(gs)
                 st.rerun()
 
@@ -1665,6 +1969,32 @@ def render_treasure(gs):
             advance_node(gs)
             st.rerun()
 
+def render_act_transition(gs):
+    """Show a full-screen-style transition card between acts. Returns True if still showing."""
+    act = gs["act"]
+    node = gs.get("current_node", {})
+    biome_key = node.get("biome")
+
+    if act == 2:
+        text = ACT_TRANSITIONS[2].get(biome_key or "ruined_keep", ACT_TRANSITIONS[2]["ruined_keep"])
+        title = "— DEEPER —"
+    else:
+        text = ACT_TRANSITIONS[3]
+        title = "— THE FINAL STRETCH —"
+
+    st.markdown(f"""
+<div class='event-box' style='border-color:#58a6ff; text-align:center; padding:28px;'>
+<div style='font-size:0.8em; letter-spacing:0.25em; color:#8b949e; margin-bottom:12px;'>ACT {act}</div>
+<div style='font-size:1.3em; letter-spacing:0.1em; color:#c9d1d9; margin-bottom:20px;'>{title}</div>
+<div style='font-size:1em; color:#8b949e; line-height:1.8; max-width:560px; margin:0 auto;'>{text}</div>
+</div>
+""", unsafe_allow_html=True)
+    if st.button("Press on →", type="primary", use_container_width=False):
+        gs["show_act_transition"] = False
+        st.rerun()
+    return True
+
+
 def render_scene(gs):
     node = gs.get("current_node")
     if not node:
@@ -1674,14 +2004,53 @@ def render_scene(gs):
             st.rerun()
         return
 
+    # ── Act transition screen ──────────────────────────────────────────────
+    if gs.get("show_act_transition"):
+        render_act_transition(gs)
+        return
+
     biome_key = node.get("biome")
-    if biome_key and biome_key in BIOMES:
-        b = BIOMES[biome_key]
-        st.markdown(f"<div class='act-banner'><b>{b['emoji']} {b['name']}</b> · <i>Act {gs['act']}</i></div>", unsafe_allow_html=True)
+    b = BIOMES.get(biome_key, {}) if biome_key else {}
+
+    # ── Header bar ────────────────────────────────────────────────────────
+    total = len(gs["run_nodes"])
+    idx = gs["current_node_idx"] + 1
+    act_label = f"Act {gs['act']}"
+    biome_label = f"{b.get('emoji','')} {b.get('name','')}" if b else ""
+    st.markdown(
+        f"<div class='act-banner'><b>{biome_label}</b> · <i>{act_label}</i> · "
+        f"<span style='color:#8b949e;'>Node {idx}/{total}</span></div>",
+        unsafe_allow_html=True
+    )
 
     render_pending_weapon(gs)
 
+    # ── Class opening (first node only) ───────────────────────────────────
+    if gs.get("show_class_opening") and gs["current_node_idx"] == 0:
+        class_key = gs["player"].get("class_key", "iron_warden")
+        opening = CLASS_OPENINGS.get(class_key, "")
+        if opening:
+            st.markdown(
+                f"<div class='event-box' style='border-color:#30363d; color:#8b949e;'>{opening}</div>",
+                unsafe_allow_html=True
+            )
+        gs["show_class_opening"] = False
+
+    # ── Biome flavour + node approach (shown until dismissed, then collapses) ──
     ntype = node["type"]
+    if not gs.get("node_intro_dismissed") and ntype not in ("fork",):
+        flavour = get_biome_flavour(gs, biome_key or "ruined_keep")
+        approach = get_node_approach(gs, node)
+        intro_lines = [l for l in [flavour, approach] if l]
+        if intro_lines:
+            st.markdown(
+                "<div style='color:#8b949e; font-style:italic; font-size:0.92em; "
+                "border-left:3px solid #30363d; padding-left:12px; margin-bottom:12px;'>"
+                + "<br>".join(intro_lines) + "</div>",
+                unsafe_allow_html=True
+            )
+
+    # ── Dispatch to node renderer ──────────────────────────────────────────
     if ntype in ("combat", "elite_combat", "boss"):
         if not gs.get("combat_state"):
             start_combat(gs, node)
